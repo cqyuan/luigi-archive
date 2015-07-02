@@ -1,0 +1,15 @@
+CREATE TABLE ztest_user_hb_times AS
+select ztest_user_app_hb_maxtimes.user_id user_id,
+case
+when ztest_user_system_hb_maxtimes.maxtime_watch > ztest_user_app_hb_maxtimes.maxtime_watch then ztest_user_system_hb_maxtimes.maxtime_watch
+else ztest_user_app_hb_maxtimes.maxtime_watch
+end maxtime_watch,
+case
+when ztest_user_app_hb_maxtimes.user_id in (select user_id from ztest_user_active_hb_maxtimes) then ztest_user_active_hb_maxtimes.maxtime_active_watch
+else null
+end maxtime_active_watch
+from ztest_user_app_hb_maxtimes
+left join ztest_user_system_hb_maxtimes
+on ztest_user_app_hb_maxtimes.user_id = ztest_user_system_hb_maxtimes.user_id
+left join ztest_user_active_hb_maxtimes
+on ztest_user_app_hb_maxtimes.user_id = ztest_user_active_hb_maxtimes.user_id

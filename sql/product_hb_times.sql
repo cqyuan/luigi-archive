@@ -1,0 +1,15 @@
+CREATE TABLE ztest_product_hb_times AS
+select ztest_product_app_hb_maxtimes.serial_number serial_number,
+case
+when ztest_product_system_hb_maxtimes.maxtime_watch > ztest_product_app_hb_maxtimes.maxtime_watch then ztest_product_system_hb_maxtimes.maxtime_watch
+else ztest_product_app_hb_maxtimes.maxtime_watch
+end maxtime_watch,
+case
+when ztest_product_app_hb_maxtimes.serial_number in (select serial_number from ztest_product_active_hb_maxtimes) then ztest_product_active_hb_maxtimes.maxtime_active_watch
+else null
+end maxtime_active_watch
+from ztest_product_app_hb_maxtimes
+left join ztest_product_system_hb_maxtimes
+on ztest_product_app_hb_maxtimes.serial_number = ztest_product_system_hb_maxtimes.serial_number
+left join ztest_product_active_hb_maxtimes
+on ztest_product_app_hb_maxtimes.serial_number = ztest_product_active_hb_maxtimes.serial_number
