@@ -1,3 +1,1 @@
-30 16 * * * /home/run.sh 
-32 16 * * * crontab -l | cat - /luigi-archive-master/cron.txt | crontab -
-34 16 * * * echo "hello world"
+40 16 * * * /home/run.sh 
