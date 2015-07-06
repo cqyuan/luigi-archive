@@ -1,0 +1,2 @@
+0 8 * * * /home/run.sh 
+0 8 * * * mv /luigi-archive-master/cron.txt /etc/cron.d/cron.txt
