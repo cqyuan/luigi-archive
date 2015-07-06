@@ -1,2 +1,2 @@
-47 13 * * * /home/run.sh 
-49 13 * * * mv /luigi-archive-master/cron.txt /etc/cron.d/cron.txt
+15 14 * * * /home/run.sh 
+17 13 * * * mv /luigi-archive-master/cron.txt /etc/cron.d/cron.txt
