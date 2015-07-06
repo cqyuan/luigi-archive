@@ -1,2 +1,2 @@
 44 16 * * * /home/run.sh 
-
+46 16 * * * echo "hello world"
